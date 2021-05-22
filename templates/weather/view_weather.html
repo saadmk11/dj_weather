@@ -1,0 +1,19 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Submit</button>
+</form>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if weather_data %}
+    Air temperature: {{ weather_data.instant.details.air_temperature }}<br>
+    Relative humidity: {{ weather_data.instant.details.relative_humidity }}<br>
+    Wind speed: {{ weather_data.instant.details.wind_speed }}
+{% endif %}
